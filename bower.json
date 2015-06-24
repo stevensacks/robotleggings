@@ -1,0 +1,26 @@
+{
+  "name": "robotleggings",
+  "version": "1.0.0",
+  "homepage": "https://github.com/stevensacks/robotleggings",
+  "authors": [
+    "Steven Sacks <stevensacks@gmail.com>"
+  ],
+  "description": "MVC framework for JavaScript applications.",
+  "main": "index.js",
+  "keywords": [
+    "robotlegs",
+    "javascript",
+    "mvc",
+    "mvp",
+    "application",
+    "framework"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
