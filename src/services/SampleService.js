@@ -1,32 +1,26 @@
-define([
-    'app/net/RestAPI', 
-    'app/services/Service'
-], function(
-    RestAPI,
-    Service
-)
+var RestAPI = require('../net/RestAPI'), 
+    Service = require('../services/Service');
+
+var SampleService = Service.extend(
 {
-    var SampleService = Service.extend(
+    init: function()
     {
-        init: function()
+        this._super(true);
+    },
+    execute: function()
+    {
+        RestAPI.execute('GET', 'route/action', this);
+    },
+    parse: function(response)
+    {
+        if (response.code === 200)
         {
-            this._super(true);
-        },
-        execute: function()
-        {
-            RestAPI.execute('GET', 'route/action', this);
-        },
-        parse: function(response)
-        {
-            if (response.code === 200)
-            {
-                if (this.success) this.success(response.data);
-            }
-            else
-            {
-                if (this.error) this.error();
-            }
+            if (this.success) this.success(response.data);
         }
-    });
-    return SampleService;
+        else
+        {
+            if (this.error) this.error();
+        }
+    }
 });
+module.exports = SampleService;

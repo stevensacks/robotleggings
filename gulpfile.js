@@ -20,8 +20,9 @@ var  mochaLcovReporter  = require('mocha-lcov-reporter');
 var coverage            = require('gulp-coverage');
 var open                = require('gulp-open');
 var istanbul            = require('gulp-istanbul');
-var Promise          = require('Bluebird');
+var Promise             = require('Bluebird');
 var merge               = require('gulp-merge');
+var browserify          = require('gulp-browserify');
 
 var CONFIG              = require('./build.config');
 
@@ -89,9 +90,35 @@ gulp.task('analyzeWhileIFix', function()
     });
 });
 
+gulp.task('build', function()
+{
+    return new Promise(function(success, failure)
+    {
+        del(CONFIG.buildFilesAndDirectoriesToClean, function()
+        {
+            console.log("clean done");
+            success();
+        }); 
+    })
+    .then(function()
+    {
+        return new Promise(function(success, failure)
+        {
+            gulp.src('src/index.js')
+                .pipe(browserify({
+                  insertGlobals : true
+                }))
+                .pipe(gulp.dest('./build'));
+            success();
+        });
+        
+    });
+});
+
 // runs full unit tests on your code and outputs code coverage reports for client & ci server
 gulp.task('test', function (done)
 {
+
   karma.start({
 	    configFile: __dirname + '/' + CONFIG.karma.configFile,
 	    singleRun: true
