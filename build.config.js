@@ -6,7 +6,7 @@ var config = {
   buildFilesAndDirectoriesToClean: ['build', 'coverage', 'reports'],
 
   client: {
-    baseDirectory: 'src/client',
+    baseDirectory: 'src/',
     sourceFiles:     ['*.js', 
                       '**/*.js', 
                       '!*.spec.js', 
