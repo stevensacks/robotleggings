@@ -1,17 +1,9 @@
 var fs = require('fs');
 var path = require('path');
-var wiredep = require('wiredep');
 var BUILD_CONFIG = require('./build.config.js');
 
 var files = [];
 
-var bowerComponents = wiredep({
-    devDependencies: true
-});
-
-if (bowerComponents) {
-    files = files.concat(bowerComponents.js);
-}
 files = files.concat(BUILD_CONFIG.karma.files);
 console.log("files:", files);
 module.exports = function(config) {

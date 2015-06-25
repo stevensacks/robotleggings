@@ -1,21 +1,14 @@
-define([
-    'app/base/Command',
-    'app/base/CommandMap',
-    'app/events/SampleEvent'
-], function(
-    Command,
-    CommandMap,
-    SampleEvent
-)
+var Command = require('./Command');
+var CommandMap = require('../base/CommandMap');
+var SampleEvent = require('../events/SampleEvent');
+
+var SampleCommand = Command.extend(
 {
-    var SampleCommand = Command.extend(
+    execute: function()
     {
-        execute: function()
-        {
-            console.log('SampleCommand.execute', this.event.payload);
-            this._super();
-        }
-    });
-    CommandMap.mapEvent(SampleEvent.TYPE, SampleCommand, SampleEvent);
-    return SampleCommand;
+        console.log('SampleCommand.execute', this.event.payload);
+        this._super();
+    }
 });
+CommandMap.mapEvent(SampleEvent.TYPE, SampleCommand, SampleEvent);
+module.exports = SampleCommand;

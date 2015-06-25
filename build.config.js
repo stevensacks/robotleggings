@@ -42,10 +42,10 @@ var config = {
   karma: {
     configFile: 'karma.config.js',
     moduleName: 'fireStarter',
-    files: ['src/client/*.js',
-            'src/client/**/*.js',
-            'src/client/*.spec.js', 
-            'src/client/**/*.spec.js',]
+    files: ['src/*.js',
+            'src/**/*.js',
+            'src/*.spec.js', 
+            'src/**/*.spec.js',]
   },
 
   staticServer: {

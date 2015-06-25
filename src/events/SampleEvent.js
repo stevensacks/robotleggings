@@ -1,14 +1,12 @@
-define(['app/events/Event'], function(Event)
+var Event = require('../events/Event');
+var SampleEvent = Event.extend(
 {
-    var SampleEvent = Event.extend(
+    init: function(type, payload)
     {
-        init: function(type, payload)
-        {
-            this._super(type);
-            this.payload = payload;
-        }
-    });
-    SampleEvent._name = 'SampleEvent';
-    SampleEvent.TYPE = 'type';
-    return SampleEvent;
+        this._super(type);
+        this.payload = payload;
+    }
 });
+SampleEvent._name = 'SampleEvent';
+SampleEvent.TYPE = 'type';
+module.exports = SampleEvent;
